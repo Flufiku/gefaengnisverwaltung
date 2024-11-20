@@ -19,8 +19,20 @@ class Form1(Form1Template):
                                    {'zellennummer': 'TODO', 'anzahl_häftlinge': 'TODO'}]
 
   def gefaengnisse_drop_down_change(self, **event_args):
-    """This method is called when an item is selected"""
-    pass
+    Name = self.gefaengnisse_drop_down.selected_value
+    data = anvil.server.call('get_gefaengis_data', Name)
+    self.label_direktor.text = data[0]
+    self.label_freie_zellen.text = data[1]
+    
+    zellennummer_data = anvil.server.call('get_zelle_data', Name)
+    
+    zelle_data = [(Zellennummer[0], anvil.server.call("get_anzahl_haeftlinge_zelle", Name, Zellennummer)[0]) for Zellennummer in zellennummer_data]
+    print(zelle_data)
+    
+    self.repeating_zellen.items = [{'zellennummer': zellennummer, 'anzahl_häftlinge': anzahl_haeftlinge} for zellennummer, anzahl_haeftlinge in zelle_data]
+    
+    
+
 
  
 
