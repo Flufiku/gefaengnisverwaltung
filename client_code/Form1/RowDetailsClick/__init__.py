@@ -28,10 +28,10 @@ class RowDetailsClick(RowDetailsClickTemplate):
     haftdauer = [anvil.server.call('get_haftdauer', haeftlingsnummer) for haeftlingsnummer in haeftlingsnummern]
 
     
-    alle_daten = []
-    for i in range(haeftlingsnummern):
-      alle_daten.append(haeftlingsnummern[i], einzug_auszug[i][0], einzug_auszug[i][1], haftdauer[i])
+    # alle_daten = []
+    # for i in range(haeftlingsnummern):
+    #   alle_daten.append(haeftlingsnummern[i], einzug_auszug[i][0], einzug_auszug[i][1], haftdauer[i])
 
-    print(alle_daten)
+    print(haeftlingsnummern, einzug_auszug, haftdauer)
     
     parent.repeating_panel_zellendetails.items = [{'haeftlingsnummer': i, 'einzug': j, 'auszug': k, 'haftdauer': l} for i, j, k, l in alle_daten]
